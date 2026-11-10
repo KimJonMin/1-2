@@ -1,0 +1,115 @@
+{
+  "quizzes": [
+    {
+      "question": "파이썬을 만든 사람은?",
+      "choices": [
+        "빌 게이츠",
+        "귀도 반 로섬",
+        "스티브 잡스",
+        "리누스 토르발스"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "Python의 의미는?",
+      "choices": [
+        "뱀",
+        "프로그래밍 언어",
+        "회사명",
+        "사람이름"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "git의 주 용도는?",
+      "choices": [
+        "버전 관리",
+        "파일 압축",
+        "이미지 편집",
+        "음악 재생"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "GitHub는 어디 회사?",
+      "choices": [
+        "구글",
+        "마이크로소프트",
+        "아마존",
+        "애플"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "JSON 형식의 확장자는?",
+      "choices": [
+        ".txt",
+        ".json",
+        ".xml",
+        ".csv"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "Python 리스트의 인덱스는?",
+      "choices": [
+        "1부터 시작",
+        "0부터 시작",
+        "-1부터 시작",
+        "정해지지 않음"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "다음 중 Python 문법이 아닌 것은?",
+      "choices": [
+        "if",
+        "for",
+        "while",
+        "goto"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "딕셔너리의 키는 어떤 타입?",
+      "choices": [
+        "리스트만 가능",
+        "정수만 가능",
+        "불변 타입",
+        "모든 타입"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "UTF-8의 주 용도는?",
+      "choices": [
+        "압축",
+        "문자 인코딩",
+        "이미지 형식",
+        "동영상 형식"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "예외 처리의 기본 문법은?",
+      "choices": [
+        "try-except",
+        "if-else",
+        "for-in",
+        "while-do"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "파이썬의 창시자는?",
+      "choices": [
+        "귀도 반 로섬",
+        "빌 게이츠",
+        "스티브 잡스",
+        "마크 주커버그"
+      ],
+      "answer": 0
+    }
+  ],
+  "best_score": 3
+}
