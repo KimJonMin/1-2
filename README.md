@@ -100,8 +100,6 @@ cd quiz-game      # 폴더 안으로 이동
 
 quiz-game/
 └── quiz.py   ← 지금 만들 파일
-코드
-python
 
 # quiz.py ─ 퀴즈 게임 기본 버전
 # 사용 문법: 리스트, 딕셔너리, for문, if문, input/print
@@ -154,7 +152,6 @@ for i, q in enumerate(questions):
 print("=" * 40)
 print(f"🏆 {name}님의 최종 점수: {score} / {len(questions)}")
 print("=" * 40)
-실행
 
 python quiz.py
 ✅ STEP 1 완료 기준 : 터미널에서 퀴즈가 출제되고 점수가 출력된다
@@ -163,7 +160,6 @@ STEP 2 · 클래스로 구조화하기
 🎯 목표 : 코드를 역할별로 나눠 읽기 쉽고 고치기 쉽게 만든다
 
 클래스가 왜 필요한가요?
-code
 
 # 클래스 없이 ─ 모든 것이 한 곳에 뒤섞임
 score = 0
@@ -177,7 +173,6 @@ questions = [...]       # 😵 길어질수록 관리가 어렵다
 │ 문제 출제   │  │ 이름 관리   │  │ 전체 흐름   │
 │ 정답 확인   │  │ 점수 관리   │  │ 조율        │
 └─────────────┘  └─────────────┘  └─────────────┘
-코드
 
 # quiz_oop.py ─ 클래스(객체 지향) 버전
 
@@ -297,8 +292,7 @@ quiz-game/
 ├── quiz_oop.py
 ├── quiz_final.py    ← 지금 만들 파일
 └── scores.json      ← 자동으로 생성됨
-코드
-python
+
 
 # quiz_final.py ─ 최종 완성 버전 (JSON 저장 포함)
 
@@ -688,6 +682,7 @@ STEP 5 · GitHub 공개
 □ README.md 를 작성했다
 □ MISSION_GUIDE.md 를 업로드했다
 □ GitHub URL 이 생겼다  →  https://github.com/내아이디/quiz-game
+
 🗂️ 최종 폴더 구조
 
 quiz-game/
@@ -716,29 +711,4 @@ Q3. git commit 과 git push 의 차이는?
 Q4. 브랜치(branch)를 사용하는 이유는?
     힌트 → main 코드를 건드리지 않고...
 💡 정답 확인 (클릭)
-🗓️ 추천 진행 일정
-
-Day 1 ── 환경 설정 & STEP 1
-  ├── Python, Git 설치 확인
-  ├── quiz.py 작성
-  └── 터미널에서 실행 성공 ✅
-
-Day 2 ── STEP 2
-  ├── 클래스(Class) 개념 이해
-  ├── Quiz, Player, Game 클래스 작성
-  └── quiz_oop.py 실행 성공 ✅
-
-Day 3 ── STEP 3
-  ├── JSON 개념 이해
-  ├── ScoreManager 클래스 작성
-  └── scores.json 생성 확인 ✅
-
-Day 4 ── STEP 4 & 5
-  ├── Git 커밋 이력 정리
-  ├── 브랜치 만들고 merge
-  ├── GitHub 저장소 생성
-  ├── README.md 작성
-  └── 최종 push 완료 🎉
-
-
 
