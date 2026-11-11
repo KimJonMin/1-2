@@ -502,7 +502,7 @@ git pull
 
 | 도구 | 권장 버전 | 확인 명령어 |
 |------|----------|------------|
-| Python | 3.8 이상 (3.12 권장) | `python --version` |
+| Python | 3.10 이상 (3.12 권장) | `python --version` |
 | Git | 2.20 이상 (2.43 권장) | `git --version` |
 
 ---
