@@ -90,6 +90,12 @@ class QuizGame:
                         score += 1
                     else:
                         print(f"❌ 틀렸습니다. 정답: {quiz.answer + 1}번")
+
+                    print(f"\n🎉 게임 종료! 점수: {score}/{len(self.quizzes)}")
+                    if score > self.best_score:
+                        self.best_score = score
+                        self.save()
+                        print(f"🏆 새로운 최고점수! {score}점")    
                 else:
                     print("❌ 1-4 사이의 숫자를 입력하세요!")
             except ValueError:
@@ -176,6 +182,34 @@ class QuizGame:
             except (KeyboardInterrupt, EOFError):
                 print("\n\n👋 게임을 종료합니다!")
                 break
+
+    def _get_number_input(self, prompt, min_val, max_val):
+    """공통 숫자 입력 처리 - 예외처리 강화"""
+    while True:
+        try:
+            raw = input(prompt)
+
+            # ① 빈 입력 처리
+            if not raw.strip():
+                print("❌ 값을 입력하세요!")
+                continue
+
+            # ② 문자 입력 처리 (abc → ValueError)
+            num = int(raw)
+
+            # ③ 범위 초과 처리
+            if min_val <= num <= max_val:
+                return num
+            else:
+                print(f"❌ {min_val}-{max_val} 사이의 숫자를 입력하세요!")
+
+        except ValueError:
+            print("❌ 숫자만 입력하세요!")
+
+        except (KeyboardInterrupt, EOFError):
+            print("\n👋 게임을 종료합니다.")
+            exit()
+
 
 
 if __name__ == "__main__":
