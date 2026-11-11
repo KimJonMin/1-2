@@ -505,7 +505,7 @@ git pull
 | Python | 3.8 이상 (3.12 권장) | `python --version` |
 | Git | 2.20 이상 (2.43 권장) | `git --version` |
 
-
+---
 
 # Step 01 - GitHub 저장소 만들기
 
