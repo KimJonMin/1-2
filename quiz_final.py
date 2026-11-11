@@ -1,6 +1,7 @@
 import json
 import os
 
+
 class Quiz:
     def __init__(self, question, choices, answer):
         self.question = question
@@ -46,16 +47,26 @@ class QuizGame:
 
     def _load_default(self):
         self.quizzes = [
-            Quiz("파이썬을 만든 사람은?", ["빌 게이츠", "귀도 반 로섬", "스티브 잡스", "리누스 토르발스"], 1),
-            Quiz("Python의 의미는?", ["뱀", "프로그래밍 언어", "회사명", "사람이름"], 0),
-            Quiz("git의 주 용도는?", ["버전 관리", "파일 압축", "이미지 편집", "음악 재생"], 0),
-            Quiz("GitHub는 어디 회사?", ["구글", "마이크로소프트", "아마존", "애플"], 1),
-            Quiz("JSON 형식의 확장자는?", [".txt", ".json", ".xml", ".csv"], 1),
-            Quiz("Python 리스트의 인덱스는?", ["1부터 시작", "0부터 시작", "-1부터 시작", "정해지지 않음"], 1),
-            Quiz("다음 중 Python 문법이 아닌 것은?", ["if", "for", "while", "goto"], 3),
-            Quiz("딕셔너리의 키는 어떤 타입?", ["리스트만 가능", "정수만 가능", "불변 타입", "모든 타입"], 2),
-            Quiz("UTF-8의 주 용도는?", ["압축", "문자 인코딩", "이미지 형식", "동영상 형식"], 1),
-            Quiz("예외 처리의 기본 문법은?", ["try-except", "if-else", "for-in", "while-do"], 0),
+            Quiz("파이썬을 만든 사람은?",
+                 ["빌 게이츠", "귀도 반 로섬", "스티브 잡스", "리누스 토르발스"], 1),
+            Quiz("Python의 의미는?",
+                 ["뱀", "프로그래밍 언어", "회사명", "사람이름"], 0),
+            Quiz("git의 주 용도는?",
+                 ["버전 관리", "파일 압축", "이미지 편집", "음악 재생"], 0),
+            Quiz("GitHub는 어디 회사?",
+                 ["구글", "마이크로소프트", "아마존", "애플"], 1),
+            Quiz("JSON 형식의 확장자는?",
+                 [".txt", ".json", ".xml", ".csv"], 1),
+            Quiz("Python 리스트의 인덱스는?",
+                 ["1부터 시작", "0부터 시작", "-1부터 시작", "정해지지 않음"], 1),
+            Quiz("다음 중 Python 문법이 아닌 것은?",
+                 ["if", "for", "while", "goto"], 3),
+            Quiz("딕셔너리의 키는 어떤 타입?",
+                 ["리스트만 가능", "정수만 가능", "불변 타입", "모든 타입"], 2),
+            Quiz("UTF-8의 주 용도는?",
+                 ["압축", "문자 인코딩", "이미지 형식", "동영상 형식"], 1),
+            Quiz("예외 처리의 기본 문법은?",
+                 ["try-except", "if-else", "for-in", "while-do"], 0),
         ]
         self.best_score = 0
 
@@ -90,12 +101,6 @@ class QuizGame:
                         score += 1
                     else:
                         print(f"❌ 틀렸습니다. 정답: {quiz.answer + 1}번")
-
-                    print(f"\n🎉 게임 종료! 점수: {score}/{len(self.quizzes)}")
-                    if score > self.best_score:
-                        self.best_score = score
-                        self.save()
-                        print(f"🏆 새로운 최고점수! {score}점")    
                 else:
                     print("❌ 1-4 사이의 숫자를 입력하세요!")
             except ValueError:
@@ -104,10 +109,12 @@ class QuizGame:
                 print("\n\n게임을 종료합니다.")
                 return
 
+        # ✅ 버그 수정: 루프 밖으로 이동 (매 문제마다 출력되던 문제 해결)
         print(f"\n🎉 게임 종료! 점수: {score}/{len(self.quizzes)}")
         if score > self.best_score:
             self.best_score = score
             self.save()
+            print(f"🏆 새로운 최고점수! {score}점")
 
     def add_quiz(self):
         try:
@@ -146,72 +153,46 @@ class QuizGame:
         for i, quiz in enumerate(self.quizzes, 1):
             print(f"[{i}] {quiz.question}")
             for j, choice in enumerate(quiz.choices, 1):
-                marker = "✓" if j - 1 == quiz.answer else " "
-                print(f"    {j}. [{marker}] {choice}")
+                print(f"    {j}. {choice}")  # ✅ 버그 수정: 잘린 코드 완성
+            print()                           # 문제 사이 빈 줄
 
-    def show_best_score(self):
-        print(f"\n🏆 최고 점수: {self.best_score}점")
+    def show_score(self):
+        print(f"\n🏆 최고 점수: {self.best_score}/{len(self.quizzes)}")
 
-    def menu(self):
-        while True:
-            print("\n" + "="*40)
-            print("🎮 퀴즈 게임 메뉴")
-            print("="*40)
-            print("1. 퀴즈 풀기")
-            print("2. 퀴즈 추가")
-            print("3. 퀴즈 목록")
-            print("4. 최고 점수")
-            print("5. 종료")
-            print("="*40)
 
-            try:
-                choice = input("선택하세요 (1-5): ")
-                if choice == "1":
-                    self.play()
-                elif choice == "2":
-                    self.add_quiz()
-                elif choice == "3":
-                    self.show_quizzes()
-                elif choice == "4":
-                    self.show_best_score()
-                elif choice == "5":
-                    print("👋 게임을 종료합니다!")
-                    break
-                else:
-                    print("❌ 1-5 사이의 숫자를 입력하세요!")
-            except (KeyboardInterrupt, EOFError):
-                print("\n\n👋 게임을 종료합니다!")
-                break
+def menu():
+    game = QuizGame()
 
-    def _get_number_input(self, prompt, min_val, max_val):
-    """공통 숫자 입력 처리 - 예외처리 강화"""
     while True:
+        print("\n" + "="*30)
+        print("       🐍 Python 퀴즈 게임")
+        print("="*30)
+        print("1. 퀴즈 풀기")
+        print("2. 퀴즈 목록 보기")
+        print("3. 퀴즈 추가하기")
+        print("4. 최고 점수 보기")
+        print("5. 종료")
+        print("="*30)
+
         try:
-            raw = input(prompt)
-
-            # ① 빈 입력 처리
-            if not raw.strip():
-                print("❌ 값을 입력하세요!")
-                continue
-
-            # ② 문자 입력 처리 (abc → ValueError)
-            num = int(raw)
-
-            # ③ 범위 초과 처리
-            if min_val <= num <= max_val:
-                return num
+            choice = input("메뉴를 선택하세요 (1-5): ").strip()
+            if choice == "1":
+                game.play()
+            elif choice == "2":
+                game.show_quizzes()
+            elif choice == "3":
+                game.add_quiz()
+            elif choice == "4":
+                game.show_score()
+            elif choice == "5":
+                print("👋 게임을 종료합니다. 수고하셨습니다!")
+                break
             else:
-                print(f"❌ {min_val}-{max_val} 사이의 숫자를 입력하세요!")
-
-        except ValueError:
-            print("❌ 숫자만 입력하세요!")
-
+                print("❌ 1-5 사이의 숫자를 입력하세요!")
         except (KeyboardInterrupt, EOFError):
-            print("\n👋 게임을 종료합니다.")
-            exit()
-
+            print("\n\n👋 게임을 종료합니다.")
+            break
 
 
 if __name__ == "__main__":
-    game = QuizGame()
-    game.menu()
+    menu()
