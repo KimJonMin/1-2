@@ -98,14 +98,14 @@ python-quiz-game/
 
 ## 📂 데이터 파일 설명
 
-### 📄 quizzes.json — 퀴즈 문제 데이터
+### 📄 state.json — 퀴즈 문제 데이터
 
 퀴즈 문제, 선택지, 정답이 저장된 파일이에요.  
 게임을 실행하면 이 파일에서 문제를 불러와요.
 
 ```json
 {
-  "quizzes": [
+  "state": [
     {
       "question": "파이썬을 만든 사람은 누구인가요?",
       "choices": ["제임스 고슬링", "귀도 반 로섬", "리누스 토르발스", "빌 게이츠"],
@@ -153,6 +153,8 @@ python-quiz-game/
 
 > 💡 `state.json` 은 처음 실행할 때 자동으로 만들어져요.  
 > 직접 수정하지 않아도 돼요.
+
+![1-2_quiz.f.p_score.png](./screenshots/1-2_quiz.f.p_score.png)
 
 ---
 
@@ -408,6 +410,9 @@ except FileNotFoundError:
 
 ---
 
+
+
+
 ## ✅ 핵심 명령어 7가지
 
 ```bash
@@ -444,6 +449,7 @@ git clone 주소
 | `clone` | 저장소 복사 |
 
 ---
+
 
 ## ✅ 브랜치 생성과 병합
 
@@ -482,7 +488,9 @@ git pull
 | 언제? | **처음** 가져올 때 | **이미 있는** 저장소 업데이트 |
 
 ---
-
+![git-remot-v_log.png](./screenshots/git-remot-v_log.png)
+![git-new-repo_log.png](./screenshots/git-new-repo_log.png)
+![git_clone_log.png](./screenshots/git_clone_log.png)
 
 ---
 
@@ -577,6 +585,7 @@ touch quizzes.json
 }
 ```
 
+
 > 💡 **JSON 이란?**  
 > 데이터를 저장하는 텍스트 형식이에요.  
 > `{ }` 는 딕셔너리, `[ ]` 는 리스트와 같아요.
@@ -608,6 +617,8 @@ print('오답(1):', q.check_answer(1))
 오답(1): False
 ```
 
+![py-test1.png](./screenshots/py-test1.png)
+
 ---
 
 ## Git 커밋
@@ -619,6 +630,11 @@ git push
 ```
 
 ---
+
+![py-git-commit1.png](./screenshots/py-git-commit1.png)
+
+---
+
 
 프로젝트 루트/state.json
 📋 역할
