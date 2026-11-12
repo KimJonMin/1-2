@@ -33,15 +33,10 @@ cd python-quiz-game
 python3 main.py
 ```
 
-<table>
-<tr>
-<td width="50%">
-텍스트
 </td>
 <td width="50%">
-![git_version.png](./screenshots/git_version.png_screenshot.png)
+![git_version.png](./screenshots/git_version.png)
 </td>
-</tr>
 </table>
 
 
