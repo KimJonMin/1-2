@@ -639,83 +639,36 @@ git push
 
 ---
 
-🐍 주요 개념 학습 내용
+제출 전 아래 항목을 모두 확인하세요!
 
-1. Python 기초
+[ ] 퀴즈가 10문제 이상 있다
+[ ] 문제가 랜덤으로 나온다
+[ ] 점수가 저장된다 (파일로)
+[ ] 클래스를 사용했다
+[ ] GitHub에 올라가 있다
+[ ] README.md 파일이 있다
 
-# 변수와 자료형
-score = 0           # int  (정수)
-name  = "퀴즈게임"  # str  (문자열)
-flag  = True        # bool (참/거짓)
+최종 제출 전 점검
+✅ 제출 전 최종 체크리스트
+📌 코드 확인
+[ ] python main.py 로 오류 없이 실행된다
+[ ] 퀴즈 문제가 10개 이상 있다
+[ ] 문제가 랜덤으로 출력된다
+[ ] 정답/오답이 올바르게 표시된다
+[ ] 점수가 scores.json 에 저장된다
+[ ] 점수 보기 메뉴가 잘 동작한다
+[ ] Quiz 클래스를 사용했다
 
-2. 조건문과 반복문
+📌 파일 구조 확인
+[ ] main.py 가 있다
+[ ] quiz.py 가 있다
+[ ] data.py 가 있다
+[ ] storage.py 가 있다
+[ ] README.md 가 있다
 
-while True:
-    choice = input("선택: ").strip()
-    if choice == "1":
-        print("퀴즈 시작!")
-    elif choice == "5":
-        break
-    else:
-        print("잘못된 입력!")
-
-3. 예외 처리
-
-try:
-    number = int(input("숫자 입력: "))
-except ValueError:
-    print("숫자만 입력하세요!")
-except KeyboardInterrupt:
-    print("\n프로그램을 종료합니다.")
-
-4. 클래스 구조
-
-class Quiz:
-    def __init__(self, question, choices, answer):
-        self.question = question
-        self.choices  = choices
-        self.answer   = answer
-
-    def check(self, user_answer):
-        return user_answer == self.answer
-
-5. JSON 파일 저장/불러오기
-
-import json
-
-# 저장
-with open("state.json", "w", encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=4)
-
-# 불러오기
-with open("state.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
-
-
-🌿 Git 커밋 이력 (단계별)
-단계	커밋 메시지 예시
-초기 설정	init: 프로젝트 초기 설정 및 .gitignore, README 추가
-메뉴 기능	feat: 메뉴 화면 구현
-Quiz 클래스	feat: Quiz 클래스 정의
-기본 퀴즈 데이터	feat: 기본 퀴즈 데이터 10개 추가
-퀴즈 풀기	feat: 퀴즈 풀기 기능 구현
-퀴즈 추가	feat: 퀴즈 추가 기능 구현
-퀴즈 목록	feat: 퀴즈 목록 보기 기능 구현
-점수 확인	feat: 최고 점수 저장 및 확인 기능 구현
-파일 입출력	feat: state.json 저장·불러오기 구현
-최종	docs: README.md 최종 작성
-
-
-
-
-
-📖 핵심 용어 사전
-용어	설명
-변수 (Variable)	데이터를 이름 붙여 저장하는 메모리 공간
-클래스 (Class)	속성과 메서드를 묶은 설계도
-객체 (Object)	클래스로 만든 실제 대상
-JSON	데이터를 저장·교환하기 좋은 텍스트 형식
-예외 처리	오류 발생 시 프로그램이 멈추지 않도록 대응하는 방법
-브랜치 (Branch)	독립적인 작업 흐름 (기능별 개발에 활용)
-커밋 (Commit)	변경 사항을 이력으로 저장하는 행위
-푸시 (Push)	로컬 커밋을 GitHub에 업로드하는 행위
+📌 Git 확인
+[ ] GitHub 저장소가 만들어져 있다
+[ ] 커밋이 10개 이상 있다
+[ ] 브랜치를 나눠서 작업했다
+[ ] 모든 브랜치가 main에 합쳐졌다
+[ ] 커밋 메시지가 규칙에 맞게 작성됐다
