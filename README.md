@@ -706,6 +706,9 @@ Quiz 클래스	feat: Quiz 클래스 정의
 최종	docs: README.md 최종 작성
 
 
+
+
+
 📖 핵심 용어 사전
 용어	설명
 변수 (Variable)	데이터를 이름 붙여 저장하는 메모리 공간
