@@ -28,7 +28,9 @@ class QuizGame:
         self.best_score = 0
         self.load()
 
+    # ✅ 이 메서드가 필요함!
     def load(self):
+        """저장된 퀴즈 데이터 불러오기"""
         if not os.path.exists(self.FILE):
             print("📂 저장 파일이 없습니다. 기본 퀴즈로 시작합니다.")
             self._load_default()
@@ -46,6 +48,7 @@ class QuizGame:
             self._load_default()
 
     def _load_default(self):
+        """기본 퀴즈 로드"""
         self.quizzes = [
             Quiz("파이썬을 만든 사람은?",
                  ["빌 게이츠", "귀도 반 로섬", "스티브 잡스", "리누스 토르발스"], 1),
@@ -71,6 +74,7 @@ class QuizGame:
         self.best_score = 0
 
     def save(self):
+        """퀴즈 데이터 저장"""
         data = {
             "quizzes": [q.to_dict() for q in self.quizzes],
             "best_score": self.best_score
@@ -83,6 +87,7 @@ class QuizGame:
             print(f"❌ 저장 오류: {e}")
 
     def play(self):
+        """퀴즈 풀기"""
         if not self.quizzes:
             print("❌ 퀴즈가 없습니다!")
             return
@@ -109,7 +114,6 @@ class QuizGame:
                 print("\n\n게임을 종료합니다.")
                 return
 
-        # ✅ 버그 수정: 루프 밖으로 이동 (매 문제마다 출력되던 문제 해결)
         print(f"\n🎉 게임 종료! 점수: {score}/{len(self.quizzes)}")
         if score > self.best_score:
             self.best_score = score
@@ -117,6 +121,7 @@ class QuizGame:
             print(f"🏆 새로운 최고점수! {score}점")
 
     def add_quiz(self):
+        """퀴즈 추가하기"""
         try:
             question = input("문제를 입력하세요: ")
             if not question.strip():
@@ -145,6 +150,7 @@ class QuizGame:
             print("\n취소되었습니다.")
 
     def show_quizzes(self):
+        """퀴즈 목록 보기"""
         if not self.quizzes:
             print("❌ 퀴즈가 없습니다!")
             return
@@ -153,47 +159,46 @@ class QuizGame:
         for i, quiz in enumerate(self.quizzes, 1):
             print(f"[{i}] {quiz.question}")
             for j, choice in enumerate(quiz.choices, 1):
-                print(f"    {j}. {choice}")  # ✅ 버그 수정: 잘린 코드 완성
-            print()                           # 문제 사이 빈 줄
+                print(f"    {j}. {choice}")
+            print()
 
     def show_score(self):
+        """최고 점수 보기"""
         print(f"\n🏆 최고 점수: {self.best_score}/{len(self.quizzes)}")
 
+    def menu(self):
+        """메뉴 표시"""
+        while True:
+            print("\n" + "="*30)
+            print("       🐍 Python 퀴즈 게임")
+            print("="*30)
+            print("1. 퀴즈 풀기")
+            print("2. 퀴즈 목록 보기")
+            print("3. 퀴즈 추가하기")
+            print("4. 최고 점수 보기")
+            print("5. 종료")
+            print("="*30)
 
-def menu():
-    game = QuizGame()
-
-    while True:
-        print("\n" + "="*30)
-        print("       🐍 Python 퀴즈 게임")
-        print("="*30)
-        print("1. 퀴즈 풀기")
-        print("2. 퀴즈 목록 보기")
-        print("3. 퀴즈 추가하기")
-        print("4. 최고 점수 보기")
-        print("5. 종료")
-        print("="*30)
-
-        try:
-            choice = input("메뉴를 선택하세요 (1-5): ").strip()
-            if choice == "1":
-                game.play()
-            elif choice == "2":
-                game.show_quizzes()
-            elif choice == "3":
-                game.add_quiz()
-            elif choice == "4":
-                game.show_score()
-            elif choice == "5":
-                print("👋 게임을 종료합니다. 수고하셨습니다!")
+            try:
+                choice = input("메뉴를 선택하세요 (1-5): ").strip()
+                if choice == "1":
+                    self.play()
+                elif choice == "2":
+                    self.show_quizzes()
+                elif choice == "3":
+                    self.add_quiz()
+                elif choice == "4":
+                    self.show_score()
+                elif choice == "5":
+                    print("👋 게임을 종료합니다. 수고하셨습니다!")
+                    break
+                else:
+                    print("❌ 1-5 사이의 숫자를 입력하세요!")
+            except (KeyboardInterrupt, EOFError):
+                print("\n\n👋 게임을 종료합니다.")
                 break
-            else:
-                print("❌ 1-5 사이의 숫자를 입력하세요!")
-        except (KeyboardInterrupt, EOFError):
-            print("\n\n👋 게임을 종료합니다.")
-            break
 
 
 if __name__ == "__main__":
-    menu()
-    
+    game = QuizGame()
+    game.menu()

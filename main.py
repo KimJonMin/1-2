@@ -1,5 +1,5 @@
 # main.py
-from quiz import QuizGame
+from quiz_final import menu
 
 if __name__ == "__main__":
     game = QuizGame()
