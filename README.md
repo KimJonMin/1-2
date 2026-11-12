@@ -37,12 +37,12 @@ python3 main.py
 
 <table>
 <tr>
-<td width="40%">
+<td width="60%">
 
 ![1-2_quiz.f.p_재출력1](./screenshots/1-2_quiz.f.p_재출력1.png)
 
 </td>
-<td width="60%">
+<td width="40%">
 
 ### 3. 메뉴 선택
 
