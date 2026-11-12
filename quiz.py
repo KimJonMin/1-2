@@ -7,6 +7,15 @@ class Quiz:
         self.question = question
         self.choices = choices
         self.answer = answer
+    def display(self):
+        """퀴즈 문제와 선택지 표시"""
+        print(f"\n❓ {self.question}")
+        for i, choice in enumerate(self.choices, 1):
+            print(f"   {i}. {choice}")
+
+    def check_answer(self, user_answer):
+        """사용자 답변 확인"""
+        return user_answer == self.answer
 
     def to_dict(self):
         return {
