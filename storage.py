@@ -4,6 +4,7 @@ import os
 
 class Storage:
     """JSON 파일 읽기·쓰기 담당"""
+    
     FILE = "state.json"
 
     @staticmethod
