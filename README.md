@@ -620,7 +620,7 @@ print('오답(1):', q.check_answer(1))
 오답(1): False
 ```
 
-![py-test1.png](./screenshots/py-test1.png)
+![py_test1.png](./screenshots/py_test1.png)
 
 ---
 
@@ -634,7 +634,7 @@ git push
 
 ---
 
-![py-git-commit1.png](./screenshots/py-git-commit1.png)
+![py_git_commit1.png](./screenshots/py_git_commit1.png)
 ![1-2_quiz.f.p_class.png](./screenshots/1-2_quiz.f.p_class.png)
 ---
 
