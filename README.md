@@ -74,12 +74,7 @@ python-quiz-game/
 ├── state.json       # 점수 기록 데이터 (자동 생성)
 │
 ├── .gitignore       # Git 제외 파일 목록
-├── README.md        # 프로젝트 설명 (이 파일)
-│
-├── Step01.md        # 1단계 학습 기록
-├── Step02.md        # 2단계 학습 기록
-├── Step03.md        # 3단계 학습 기록
-└── Step04.md        # 4단계 학습 기록
+└── README.md        # 프로젝트 설명 (이 파일)
 ```
 
 ---
@@ -472,276 +467,6 @@ git pull
 ---
 
 
-
-
-
-
-
-
----
-
-# Step 01 - GitHub 저장소 만들기
-
-## 목표
-GitHub에 저장소를 만들고 내 컴퓨터와 연결한다.
-
----
-
-## 순서
-
-### 1. GitHub에서 저장소 만들기
-1. [github.com](https://github.com) 로그인
-2. 우측 상단 `+` 버튼 → `New repository` 클릭
-3. 아래처럼 입력 후 `Create repository` 클릭
-
-| 항목 | 입력값 |
-|------|--------|
-| Repository name | `python-quiz-game` |
-| Description | `터미널 퀴즈 게임` |
-| Public / Private | Public |
-| README 추가 | ❌ 체크 안 함 |
-
----
-
-### 2. 내 컴퓨터에 폴더 만들기
-
-```bash
-mkdir python-quiz-game
-cd python-quiz-game
-git init
-```
-
-> 💡 `git init` 은 이 폴더를 Git이 관리하도록 설정하는 명령어예요.
-
----
-
-### 3. GitHub 저장소와 연결하기
-
-```bash
-git remote add origin https://github.com/내아이디/python-quiz-game.git
-```
-
-> ⚠️ `내아이디` 부분을 본인 GitHub 아이디로 바꿔주세요.
-
----
-
-### 4. 연결 확인
-
-```bash
-git remote -v
-```
-
-아래처럼 나오면 성공이에요 ✅
-```
-origin  https://github.com/내아이디/python-quiz-game.git (fetch)
-origin  https://github.com/내아이디/python-quiz-game.git (push)
-```
-
----
-
-
-# Step 02 - 첫 파일 만들고 GitHub에 올리기
-
-## 목표
-`.gitignore` 와 `README.md` 를 만들고 GitHub에 첫 커밋을 올린다.
-
----
-
-## 순서
-
-### 1. .gitignore 파일 만들기
-
-```bash
-touch .gitignore
-```
-
-`.gitignore` 파일을 열고 아래 내용을 붙여넣기 하세요.
-
-```
-__pycache__/
-*.pyc
-.DS_Store
-.env
-```
-
-> 💡 `.gitignore` 는 GitHub에 올리지 않을 파일을 지정하는 파일이에요.  
-> 위 4줄은 파이썬 프로젝트에서 올릴 필요 없는 파일들이에요.
-
----
-
-### 2. README.md 파일 만들기
-
-```bash
-touch README.md
-```
-
-`README.md` 파일을 열고 아래 내용을 붙여넣기 하세요.
-
-```markdown
-# 🎯 Python 퀴즈 게임
-
-터미널에서 실행하는 파이썬 퀴즈 게임입니다.
-
-## 실행 방법
-python3 main.py
-
-## 기술 스택
-- Python 3
-- JSON
-```
-
-> 💡 `README.md` 는 프로젝트를 소개하는 파일이에요.  
-> GitHub 저장소에 들어가면 첫 화면에 보여요.
-
----
-
-### 3. GitHub에 올리기
-
-아래 명령어를 **순서대로** 입력하세요.
-
-```bash
-git add .
-```
-> 💡 변경된 파일을 전부 선택해요.
-
-```bash
-git commit -m "init: 프로젝트 초기 설정"
-```
-> 💡 선택한 파일을 저장해요. `""` 안에는 무엇을 했는지 적어요.
-
-```bash
-git push -u origin main
-```
-> 💡 저장한 내용을 GitHub에 올려요.
-
----
-
-### 4. 확인
-GitHub 저장소 페이지를 새로고침 하면  
-`.gitignore` 와 `README.md` 파일이 보여야 해요 ✅
-
----
-
-
-# Step 03 - 메뉴 화면 만들기
-
-## 목표
-`main.py` 를 만들고 게임의 메뉴 화면을 구현한다.
-
----
-
-## 순서
-
-### 1. main.py 파일 만들기
-
-```bash
-touch main.py
-```
-
----
-
-### 2. main.py 코드 작성
-
-```python
-def show_menu():
-    """메뉴를 출력하는 함수"""
-    print("\n=============================")
-    print("       🎯 파이썬 퀴즈 게임")
-    print("=============================")
-    print("1. 퀴즈 시작")
-    print("2. 점수 기록 보기")
-    print("3. 도움말")
-    print("4. 종료")
-    print("=============================")
-
-
-def main():
-    """프로그램 시작점"""
-    while True:                          # 계속 반복
-        show_menu()                      # 메뉴 출력
-
-        choice = input("번호를 입력하세요: ").strip()  # 입력 받기
-
-        if choice == "1":
-            print("\n▶ 퀴즈 시작! (다음 단계에서 구현)")
-        elif choice == "2":
-            print("\n▶ 점수 기록 (다음 단계에서 구현)")
-        elif choice == "3":
-            print("\n▶ 도움말 (다음 단계에서 구현)")
-        elif choice == "4":
-            print("\n👋 게임을 종료합니다.")
-            break                        # 반복 종료
-        else:
-            print("\n⚠️  1~4 중에서 입력해주세요.")  # 잘못된 입력 처리
-
-
-if __name__ == "__main__":
-    main()
-```
-
----
-
-## 코드 설명
-
-| 코드 | 설명 |
-|------|------|
-| `def show_menu():` | 메뉴를 출력하는 함수 |
-| `def main():` | 프로그램이 시작되는 함수 |
-| `while True:` | 종료할 때까지 계속 반복 |
-| `input()` | 키보드 입력을 받음 |
-| `.strip()` | 입력값 앞뒤 공백 제거 |
-| `break` | 반복문 종료 |
-| `if __name__ == "__main__":` | 이 파일을 직접 실행할 때만 `main()` 호출 |
-
----
-
-## 실행 방법
-
-```bash
-python3 main.py
-```
-
-실행하면 아래처럼 보여야 해요 ✅
-```
-=============================
-       🎯 파이썬 퀴즈 게임
-=============================
-1. 퀴즈 시작
-2. 점수 기록 보기
-3. 도움말
-4. 종료
-=============================
-번호를 입력하세요:
-```
-
----
-
-## Git 커밋
-
-```bash
-git add main.py
-git commit -m "feat: 메뉴 화면 구현"
-git push
-```
-
----
-
-
-# Step 04 - Quiz 클래스 + 퀴즈 데이터 만들기
-
-## 목표
-퀴즈를 담는 `Quiz` 클래스를 만들고, 퀴즈 데이터를 JSON 파일에 저장한다.
-
----
-
-## 순서
-
-### 1. quiz.py 파일 만들기
-
-```bash
-touch quiz.py
-```
-
 ---
 
 ### 2. quiz.py 코드 작성
@@ -878,6 +603,15 @@ git push
 
 ---
 
+프로젝트 루트/state.json
+📋 역할
+퀴즈 데이터(문제·선택지·정답)를 영구 저장합니다.
+최고 점수를 저장하여 프로그램 재실행 후에도 유지합니다.
+파일이 없으면 기본 퀴즈 데이터로 자동 초기화됩니다.
+파일이 손상된 경우 안내 메시지 출력 후 기본 데이터로 복구됩니다.
+
+---
+
 # 📋 전체 학습 목표 체크리스트
 
 ### Python 기초
@@ -902,3 +636,83 @@ git push
 - [ ] init, add, commit, push, pull, checkout, clone 을 설명할 수 있다
 - [ ] 브랜치를 생성하고 병합할 수 있다
 - [ ] clone 과 pull 의 차이를 설명할 수 있다
+
+---
+
+🐍 주요 개념 학습 내용
+
+1. Python 기초
+
+# 변수와 자료형
+score = 0           # int  (정수)
+name  = "퀴즈게임"  # str  (문자열)
+flag  = True        # bool (참/거짓)
+
+2. 조건문과 반복문
+
+while True:
+    choice = input("선택: ").strip()
+    if choice == "1":
+        print("퀴즈 시작!")
+    elif choice == "5":
+        break
+    else:
+        print("잘못된 입력!")
+
+3. 예외 처리
+
+try:
+    number = int(input("숫자 입력: "))
+except ValueError:
+    print("숫자만 입력하세요!")
+except KeyboardInterrupt:
+    print("\n프로그램을 종료합니다.")
+
+4. 클래스 구조
+
+class Quiz:
+    def __init__(self, question, choices, answer):
+        self.question = question
+        self.choices  = choices
+        self.answer   = answer
+
+    def check(self, user_answer):
+        return user_answer == self.answer
+
+5. JSON 파일 저장/불러오기
+
+import json
+
+# 저장
+with open("state.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+
+# 불러오기
+with open("state.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+
+🌿 Git 커밋 이력 (단계별)
+단계	커밋 메시지 예시
+초기 설정	init: 프로젝트 초기 설정 및 .gitignore, README 추가
+메뉴 기능	feat: 메뉴 화면 구현
+Quiz 클래스	feat: Quiz 클래스 정의
+기본 퀴즈 데이터	feat: 기본 퀴즈 데이터 10개 추가
+퀴즈 풀기	feat: 퀴즈 풀기 기능 구현
+퀴즈 추가	feat: 퀴즈 추가 기능 구현
+퀴즈 목록	feat: 퀴즈 목록 보기 기능 구현
+점수 확인	feat: 최고 점수 저장 및 확인 기능 구현
+파일 입출력	feat: state.json 저장·불러오기 구현
+최종	docs: README.md 최종 작성
+
+
+📖 핵심 용어 사전
+용어	설명
+변수 (Variable)	데이터를 이름 붙여 저장하는 메모리 공간
+클래스 (Class)	속성과 메서드를 묶은 설계도
+객체 (Object)	클래스로 만든 실제 대상
+JSON	데이터를 저장·교환하기 좋은 텍스트 형식
+예외 처리	오류 발생 시 프로그램이 멈추지 않도록 대응하는 방법
+브랜치 (Branch)	독립적인 작업 흐름 (기능별 개발에 활용)
+커밋 (Commit)	변경 사항을 이력으로 저장하는 행위
+푸시 (Push)	로컬 커밋을 GitHub에 업로드하는 행위
