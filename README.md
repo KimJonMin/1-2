@@ -1,3 +1,235 @@
+# 🎮 처음 만드는 Python 퀴즈 게임
+
+> Python 기초부터 GitHub 공개까지 — 초보자를 위한 단계별 퀴즈 게임 프로젝트
+
+---
+
+## 📌 프로젝트 개요
+
+터미널에서 실행되는 퀴즈 게임입니다.  
+사용자가 퀴즈를 풀고 점수를 확인할 수 있으며,  
+새 문제를 추가하거나 점수를 저장한 뒤 프로그램을 종료해도 데이터가 유지됩니다.
+
+---
+
+## 🗺️ 전체 흐름
+Python 기초 → 퀴즈 기능 구현 → 클래스로 구조화 → JSON 저장 → Git 기록 → GitHub 공개
+
+---
+
+## 🧩 퀴즈 주제와 선정 이유
+
+- **주제:** Python 프로그래밍 기초
+- **선정 이유:** 학습한 내용을 직접 퀴즈로 만들어 복습하면서,  
+  프로그래밍 개념을 더 확실하게 익히기 위해 선정했습니다.
+
+---
+
+## ▶️ 실행 방법
+
+### 1. 저장소 클론
+
+```bash
+git clone https://github.com/내아이디/quiz-game.git
+cd quiz-game
+2. Python 버전 확인 (3.10 이상 필요)
+
+python --version
+3. 프로그램 실행
+
+python main.py
+⚠️ 외부 라이브러리 설치 없이 실행 가능합니다. (표준 라이브러리만 사용)
+
+🔧 기능 목록
+번호	기능	설명
+1	메뉴 출력	프로그램 실행 시 메뉴가 출력됨
+2	퀴즈 풀기	저장된 퀴즈를 순서대로 출제, 정답/오답 여부 안내
+3	퀴즈 추가	문제·선택지 4개·정답 번호를 입력해 새 퀴즈 등록
+4	퀴즈 목록	저장된 퀴즈 전체 목록 확인
+5	점수 확인	최고 점수 확인 및 갱신
+6	파일 저장	퀴즈 데이터와 최고 점수를 state.json에 저장
+7	예외 처리	잘못된 입력, 파일 오류, Ctrl+C 등 안전하게 처리
+8	종료	데이터 저장 후 안전하게 종료
+
+📁 파일 구조
+
+quiz-game/
+├── main.py         # 프로그램 시작 및 메뉴
+├── quiz.py         # Quiz 클래스 / QuizGame 클래스
+├── storage.py      # JSON 읽기·쓰기
+├── state.json      # 퀴즈 데이터 + 최고 점수 저장 파일
+├── .gitignore      # Git 추적 제외 파일 목록
+└── README.md       # 프로젝트 설명 문서
+💾 데이터 파일 설명 (state.json)
+📍 경로
+
+프로젝트 루트/state.json
+📋 역할
+퀴즈 데이터(문제·선택지·정답)를 영구 저장합니다.
+최고 점수를 저장하여 프로그램 재실행 후에도 유지합니다.
+파일이 없으면 기본 퀴즈 데이터로 자동 초기화됩니다.
+파일이 손상된 경우 안내 메시지 출력 후 기본 데이터로 복구됩니다.
+
+📐 스키마 (데이터 구조)
+json
+📋 복사
+{
+  "best_score": 8,
+  "quizzes": [
+    {
+      "question": "Python에서 정수를 나타내는 자료형은?",
+      "choices": ["str", "int", "bool", "float"],
+      "answer": 2
+    },
+    {
+      "question": "조건에 따라 실행을 나누는 문법은?",
+      "choices": ["if", "print", "import", "def"],
+      "answer": 1
+    }
+  ]
+}
+🔑 키 설명
+키	타입	설명
+best_score	int	역대 최고 정답 수
+quizzes	list	퀴즈 목록 배열
+quizzes[].question	str	문제 텍스트
+quizzes[].choices	list(str)	선택지 4개
+quizzes[].answer	int	정답 번호 (1~4)
+
+🐍 주요 개념 학습 내용
+
+1. Python 기초
+
+# 변수와 자료형
+score = 0           # int  (정수)
+name  = "퀴즈게임"  # str  (문자열)
+flag  = True        # bool (참/거짓)
+
+2. 조건문과 반복문
+
+while True:
+    choice = input("선택: ").strip()
+    if choice == "1":
+        print("퀴즈 시작!")
+    elif choice == "5":
+        break
+    else:
+        print("잘못된 입력!")
+
+3. 예외 처리
+
+try:
+    number = int(input("숫자 입력: "))
+except ValueError:
+    print("숫자만 입력하세요!")
+except KeyboardInterrupt:
+    print("\n프로그램을 종료합니다.")
+
+4. 클래스 구조
+
+class Quiz:
+    def __init__(self, question, choices, answer):
+        self.question = question
+        self.choices  = choices
+        self.answer   = answer
+
+    def check(self, user_answer):
+        return user_answer == self.answer
+
+5. JSON 파일 저장/불러오기
+
+import json
+
+# 저장
+with open("state.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+
+# 불러오기
+with open("state.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+
+🌿 Git 커밋 이력 (단계별)
+단계	커밋 메시지 예시
+초기 설정	init: 프로젝트 초기 설정 및 .gitignore, README 추가
+메뉴 기능	feat: 메뉴 화면 구현
+Quiz 클래스	feat: Quiz 클래스 정의
+기본 퀴즈 데이터	feat: 기본 퀴즈 데이터 10개 추가
+퀴즈 풀기	feat: 퀴즈 풀기 기능 구현
+퀴즈 추가	feat: 퀴즈 추가 기능 구현
+퀴즈 목록	feat: 퀴즈 목록 보기 기능 구현
+점수 확인	feat: 최고 점수 저장 및 확인 기능 구현
+파일 입출력	feat: state.json 저장·불러오기 구현
+최종	docs: README.md 최종 작성
+
+
+📖 핵심 용어 사전
+용어	설명
+변수 (Variable)	데이터를 이름 붙여 저장하는 메모리 공간
+클래스 (Class)	속성과 메서드를 묶은 설계도
+객체 (Object)	클래스로 만든 실제 대상
+JSON	데이터를 저장·교환하기 좋은 텍스트 형식
+예외 처리	오류 발생 시 프로그램이 멈추지 않도록 대응하는 방법
+브랜치 (Branch)	독립적인 작업 흐름 (기능별 개발에 활용)
+커밋 (Commit)	변경 사항을 이력으로 저장하는 행위
+푸시 (Push)	로컬 커밋을 GitHub에 업로드하는 행위
+
+✅ 개발 환경
+항목	내용
+Python	3.10 이상
+에디터	VS Code
+OS	Windows / macOS / Linux
+
+이 프로젝트는 Python 퀴즈 게임 미션 학습용으로 제작되었습니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 🎯 Python 퀴즈 게임 개요
 
 터미널에서 실행하는 파이썬 퀴즈 게임입니다.  
