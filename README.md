@@ -488,7 +488,7 @@ git pull
 | 언제? | **처음** 가져올 때 | **이미 있는** 저장소 업데이트 |
 
 ---
-![git-remot-v.png](./screenshots/git-remot-v.png)
+![git_remot_v.png](./screenshots/git_remot_v.png)
 ![git_new_repo.png](./screenshots/git_new_repo.png)
 ![git_clone_log.png](./screenshots/git_clone_log.png)
 
@@ -586,7 +586,7 @@ touch state.json
 }
 ```
 
-![state_json.png](./screenshots/state_json.py.png)
+![state_json.png](./screenshots/state_json.png)
 
 
 > 💡 **JSON 이란?**  
