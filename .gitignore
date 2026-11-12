@@ -26,3 +26,4 @@ __pycache__/
 *.pyc
 state.json
 *.Zone.Identifier
+*.Zone.Identifier
