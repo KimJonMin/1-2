@@ -494,7 +494,7 @@ git pull
 
 ---
 
-### 2. quiz.py 코드 작성
+### 2. quiz_final.py 코드 작성
 
 ```python
 class Quiz:
@@ -515,6 +515,7 @@ class Quiz:
         """정답이면 True, 오답이면 False 반환"""
         return self.answer == user_answer
 ```
+![quiz_final.py.png](./screenshots/quiz_final.py.png)
 
 ---
 
@@ -533,15 +534,15 @@ class Quiz:
 
 ---
 
-### 3. quizzes.json 파일 만들기
+### 3. state.json 파일 만들기
 
 ```bash
-touch quizzes.json
+touch state.json
 ```
 
 ---
 
-### 4. quizzes.json 데이터 작성
+### 4. state.json 데이터 작성
 
 ```json
 {
@@ -584,6 +585,8 @@ touch quizzes.json
   ]
 }
 ```
+
+![state.json.png](./screenshots/state.json.py.png)
 
 
 > 💡 **JSON 이란?**  
