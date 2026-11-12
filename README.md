@@ -35,7 +35,9 @@ python3 main.py
 
 </td>
 <td width="50%">
+
 ![git_version.png](./screenshots/git_version.png)
+
 </td>
 </table>
 
