@@ -35,6 +35,15 @@ python3 main.py
 ![git_version.png](./screenshots/git_version.png)
 
 
+<table>
+<tr>
+<td width="40%">
+
+![1-2_quiz.f.p_재출력1](./screenshots/1-2_quiz.f.p_재출력1.png)
+
+</td>
+<td width="60%">
+
 ### 3. 메뉴 선택
 
 ```
@@ -51,6 +60,10 @@ python3 main.py
 ```
 
 > 💡 1~4 숫자를 입력하고 Enter 를 누르세요.
+
+</td>
+</tr>
+</table>
 
 ---
 
