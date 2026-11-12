@@ -35,12 +35,14 @@ python3 main.py
 
 <table>
 <tr>
-<td width="40%">
-
-![git version.png](./screenshots/git version.png_screenshot.png)
-
+<td width="50%">
+텍스트
 </td>
-<td width="60%">
+<td width="50%">
+![git_version.png](./screenshots/git_version.png_screenshot.png)
+</td>
+</tr>
+</table>
 
 
 ### 3. 메뉴 선택
