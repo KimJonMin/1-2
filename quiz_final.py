@@ -24,23 +24,20 @@ class QuizGame:
 
     def load(self):
         """데이터 로드 (파일 없음/손상 시 복구 로직 포함)"""
-        # 1. 파일이 없는 경우: 기본 데이터 사용
         if not os.path.exists(self.FILE):
             self._load_default()
             self.save()
             return
 
-        # 2. 파일이 있는 경우 읽기 시도
         try:
             with open(self.FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
             self.quizzes = [Quiz.from_dict(q) for q in data["quizzes"]]
             self.best_score = data["best_score"]
         except (json.JSONDecodeError, KeyError, TypeError):
-            # 📍 파일이 손상된 경우 (JSON 형식이 아니거나 데이터 구조가 틀린 경우)
             print("\n⚠️ 데이터 파일이 손상되었습니다. 기본 데이터로 복구합니다.")
             self._load_default()
-            self.save()  # 복구된 데이터로 파일 덮어쓰기
+            self.save()
         except Exception as e:
             print(f"\n⚠️ 알 수 없는 오류 발생: {e}")
             self._load_default()
@@ -61,14 +58,16 @@ class QuizGame:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
     def play(self):
-        """퀴즈 풀기 (재입력 로직 완벽 반영)"""
+        """퀴즈 풀기 및 결과 출력 (이미지 디자인 반영)"""
         if not self.quizzes:
             print("❌ 퀴즈가 없습니다!")
             return
 
         score = 0
+        total = len(self.quizzes)
+
         for i, quiz in enumerate(self.quizzes, 1):
-            print(f"\n[{i}/{len(self.quizzes)}] {quiz.question}")
+            print(f"\n[{i}/{total}] {quiz.question}")
             for j, choice in enumerate(quiz.choices, 1):
                 print(f"  {j}. {choice}")
 
@@ -86,7 +85,7 @@ class QuizGame:
                             score += 1
                         else:
                             print(f"❌ 틀렸습니다. 정답: {quiz.answer + 1}번")
-                        break # 정답/오답 판단 후 다음 문제로
+                        break
                     else:
                         print("❌ 1-4 사이의 숫자를 입력하세요!")
                 except ValueError:
@@ -95,11 +94,20 @@ class QuizGame:
                     print("\n⚠️ 게임을 중단합니다.")
                     return
 
-        print(f"\n🎉 게임 종료! 점수: {score}/{len(self.quizzes)}")
+        # --- [수정된 결과 출력 부분] ---
+        percentage = int((score / total) * 100)
+        
+        print("\n" + "="*40)
+        print(f"🏆 결과: {total}문제 중 {score}문제 정답! ({percentage}점)")
+        
         if score > self.best_score:
             self.best_score = score
             self.save()
-            print(f"🏆 최고점수 갱신: {score}점")
+            print("🎉 새로운 최고 점수입니다!")
+        print("="*40)
+        
+        print(f"\n🎉 게임 종료! 점수: {score}/{total}")
+        # -----------------------------
 
     def add_quiz(self):
         """퀴즈 추가 (빈 값/범위 체크 적용)"""
