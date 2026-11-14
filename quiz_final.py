@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 
 class Quiz:
     def __init__(self, question, choices, answer):
@@ -15,32 +16,50 @@ class Quiz:
         return Quiz(data["question"], data["choices"], data["answer"])
 
 class QuizGame:
-    FILE = "state.json"
+    STATE_FILE = "state.json"
+    SCORES_FILE = "scores.json"
 
     def __init__(self):
         self.quizzes = []
         self.best_score = 0
+        self.scores = []  # 모든 점수 기록
         self.load()
 
     def load(self):
         """데이터 로드 (파일 없음/손상 시 복구 로직 포함)"""
-        if not os.path.exists(self.FILE):
+        # state.json 로드 (퀴즈 데이터)
+        if not os.path.exists(self.STATE_FILE):
             self._load_default()
-            self.save()
+            self.save_state()
             return
 
         try:
-            with open(self.FILE, "r", encoding="utf-8") as f:
+            with open(self.STATE_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
             self.quizzes = [Quiz.from_dict(q) for q in data["quizzes"]]
-            self.best_score = data["best_score"]
         except (json.JSONDecodeError, KeyError, TypeError):
-            print("\n⚠️ 데이터 파일이 손상되었습니다. 기본 데이터로 복구합니다.")
+            print("\n⚠️ 퀴즈 데이터 파일이 손상되었습니다. 기본 데이터로 복구합니다.")
             self._load_default()
-            self.save()
+            self.save_state()
         except Exception as e:
             print(f"\n⚠️ 알 수 없는 오류 발생: {e}")
             self._load_default()
+
+        # scores.json 로드 (점수 기록)
+        if os.path.exists(self.SCORES_FILE):
+            try:
+                with open(self.SCORES_FILE, "r", encoding="utf-8") as f:
+                    self.scores = json.load(f)
+                # 최고 점수 계산
+                if self.scores:
+                    self.best_score = max([s["score"] for s in self.scores])
+            except (json.JSONDecodeError, KeyError, TypeError):
+                print("\n⚠️ 점수 파일이 손상되었습니다. 초기화합니다.")
+                self.scores = []
+                self.best_score = 0
+        else:
+            self.scores = []
+            self.best_score = 0
 
     def _load_default(self):
         """기본 퀴즈 데이터 세팅"""
@@ -50,15 +69,27 @@ class QuizGame:
             Quiz("git의 주 용도는?", ["버전 관리", "파일 압축", "이미지 편집", "음악 재생"], 0),
             Quiz("GitHub는 어디 회사?", ["구글", "마이크로소프트", "아마존", "애플"], 1),
         ]
-        self.best_score = 0
 
-    def save(self):
-        data = {"quizzes": [q.to_dict() for q in self.quizzes], "best_score": self.best_score}
-        with open(self.FILE, "w", encoding="utf-8") as f:
+    def save_state(self):
+        """퀴즈 데이터를 state.json에 저장"""
+        data = {"quizzes": [q.to_dict() for q in self.quizzes]}
+        with open(self.STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
+    def save_score(self, score):
+        """점수를 scores.json에 저장"""
+        score_record = {
+            "score": score,
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "total_questions": len(self.quizzes)
+        }
+        self.scores.append(score_record)
+        
+        with open(self.SCORES_FILE, "w", encoding="utf-8") as f:
+            json.dump(self.scores, f, ensure_ascii=False, indent=2)
+
     def play(self):
-        """퀴즈 풀기 및 결과 출력 (이미지 디자인 반영)"""
+        """퀴즈 풀기 및 결과 출력 (100점 만점 기준)"""
         if not self.quizzes:
             print("❌ 퀴즈가 없습니다!")
             return
@@ -94,20 +125,24 @@ class QuizGame:
                     print("\n⚠️ 게임을 중단합니다.")
                     return
 
-        # --- [수정된 결과 출력 부분] ---
-        percentage = int((score / total) * 100)
+        # --- [100점 만점 기준으로 점수 환산] ---
+        current_score_100 = int((score / total) * 100)
         
         print("\n" + "="*40)
-        print(f"🏆 결과: {total}문제 중 {score}문제 정답! ({percentage}점)")
+        print(f"📊 이번 게임 결과: {current_score_100}점")
+        print(f"   (총 {total}문제 중 {score}문제 정답)")
         
-        if score > self.best_score:
-            self.best_score = score
-            self.save()
-            print("🎉 새로운 최고 점수입니다!")
+        # 점수를 scores.json에 저장
+        self.save_score(current_score_100)
+        
+        # 최고 점수 비교
+        if current_score_100 > self.best_score:
+            self.best_score = current_score_100
+            print("🎉 축하합니다! 새로운 최고 점수 달성!")
+        else:
+            print(f"   현재 최고 점수: {self.best_score}점")
         print("="*40)
-        
-        print(f"\n🎉 게임 종료! 점수: {score}/{total}")
-        # -----------------------------
+        # --------------------------------
 
     def add_quiz(self):
         """퀴즈 추가 (빈 값/범위 체크 적용)"""
@@ -141,7 +176,7 @@ class QuizGame:
                     print("❌ 숫자를 입력하세요!")
 
             self.quizzes.append(Quiz(question, choices, answer))
-            self.save()
+            self.save_state()
             print("✅ 퀴즈가 추가되었습니다!")
         except (KeyboardInterrupt, EOFError):
             print("\n취소되었습니다.")
@@ -155,7 +190,24 @@ class QuizGame:
             print(f"{i}. {quiz.question}")
 
     def show_score(self):
-        print(f"\n🏆 최고 점수: {self.best_score}/{len(self.quizzes)}")
+        """최고 점수 표시 (100점 만점 기준)"""
+        print("\n" + "="*40)
+        print(f"🏆 현재 최고 기록: {self.best_score}점")
+        print("   (100점 만점 기준)")
+        print("="*40)
+
+    def show_all_scores(self):
+        """모든 점수 기록 표시"""
+        if not self.scores:
+            print("\n❌ 점수 기록이 없습니다!")
+            return
+        
+        print("\n" + "="*50)
+        print(f"📊 전체 점수 기록 ({len(self.scores)}회)")
+        print("="*50)
+        for i, record in enumerate(self.scores, 1):
+            print(f"{i}. {record['score']}점 - {record['date']}")
+        print("="*50)
 
     def menu(self):
         while True:
@@ -166,11 +218,12 @@ class QuizGame:
             print("2. 퀴즈 목록 보기")
             print("3. 퀴즈 추가하기")
             print("4. 최고 점수 보기")
-            print("5. 종료")
+            print("5. 전체 점수 기록 보기")
+            print("6. 종료")
             print("="*30)
 
             try:
-                choice = input("메뉴를 선택하세요 (1-5): ").strip()
+                choice = input("메뉴를 선택하세요 (1-6): ").strip()
                 if not choice:
                     print("❌ 메뉴 번호를 입력해주세요.")
                     continue
@@ -179,11 +232,12 @@ class QuizGame:
                 elif choice == "2": self.show_quizzes()
                 elif choice == "3": self.add_quiz()
                 elif choice == "4": self.show_score()
-                elif choice == "5":
+                elif choice == "5": self.show_all_scores()
+                elif choice == "6":
                     print("👋 게임을 종료합니다.")
                     break
                 else:
-                    print("❌ 1-5 사이의 숫자를 입력하세요!")
+                    print("❌ 1-6 사이의 숫자를 입력하세요!")
             except (KeyboardInterrupt, EOFError):
                 print("\n👋 프로그램을 종료합니다.")
                 break
