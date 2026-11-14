@@ -1,0 +1,16 @@
+{
+  "quizzes": [
+    {
+      "question": "파이썬을 만든 사람은?",
+      "difficulty": "쉬움",
+      "choices": ["빌 게이츠", "귀도 반 로섬", "스티브 잡스", "리누스 토르발스"],
+      "answer": 1
+    },
+    {
+      "question": "git의 주 용도는?",
+      "difficulty": "보통",
+      "choices": ["버전 관리", "파일 압축", "이미지 편집", "음악 재생"],
+      "answer": 0
+    }
+  ]
+}
