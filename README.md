@@ -706,7 +706,6 @@ git push
 ---
 
 ![py_git_commit1.png](./screenshots/py_git_commit1.png)
-![1-2_quiz.f.p_class.png](./screenshots/1-2_quiz.f.p_class.png)
 ---
 
 
