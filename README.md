@@ -335,9 +335,8 @@ class Quiz:
                   (예: 붕어빵이 따끈하게 데워지기)
                  => 동사! (걷다, 먹다, 출력하다, 확인하다)
 
-
-![1-2_quiz.f.p_class.png](./screenshots/1-2_quiz.f.p_class.png)
 ---
+
 
 # 3️⃣ 파일 입출력
 
@@ -692,7 +691,9 @@ print('오답(1):', q.check_answer(1))
 ```
 
 ![py_test1.png](./screenshots/py_test1.png)
-
+![1-2_quiz.f.p_목록.png](./screenshots/1-2_quiz.f.p_목록.png)
+![1-2_quiz.f.p_score.png](./screenshots/1-2_quiz.f.p_score.png)
+![1-2_quiz.f.p_종료.png](./screenshots/1-2_quiz.f.p_종료.png)
 ---
 
 ## Git 커밋
