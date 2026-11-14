@@ -84,9 +84,10 @@ python3 quiz_fianl.py
 python-quiz-game/
 │
 ├── main.py          # 프로그램 시작점, 메뉴 화면
-├── quiz_fianl.py    # Quiz 클래스 정의
+├── quiz_fianl.py    # Quiz 클래스 정의(퀴즈 한 문제라는 '레시피'를 정의)
 ├── storage.py       # state.json 파일을 읽고 쓰는 (저장/불러오기)
 ├── state.json       # 실제데이터(점수, 문제)가 저장 (자동 생성)
+├── test_quiz.py     # 기능이 잘 작동하는지 테스트 용도
 ├── .gitignore       # Git 제외 파일 목록
 └── README.md        # 프로젝트 설명 (이 파일)
 ```
@@ -130,38 +131,8 @@ python-quiz-game/
 
 ---
 
-### 📄 state.json — 점수 기록 데이터
-
-게임을 플레이하면 **자동으로 생성**되는 파일이에요.  
-플레이 횟수, 점수, 날짜가 기록돼요.
-
-```json
-{
-  "records": [
-    {
-      "date": "2025-01-01",
-      "score": 5,
-      "total": 7
-    },
-    {
-      "date": "2025-01-02",
-      "score": 7,
-      "total": 7
-    }
-  ]
-}
-```
-
-| 항목 | 설명 |
-|------|------|
-| `date` | 플레이한 날짜 |
-| `score` | 맞힌 문제 수 |
-| `total` | 전체 문제 수 |
-
 > 💡 `state.json` 은 처음 실행할 때 자동으로 만들어져요.  
 > 직접 수정하지 않아도 돼요.
-
-![1-2_quiz.f.p_score.png](./screenshots/1-2_quiz.f.p_score.png)
 
 ---
 
@@ -364,6 +335,8 @@ class Quiz:
                   (예: 붕어빵이 따끈하게 데워지기)
                  => 동사! (걷다, 먹다, 출력하다, 확인하다)
 
+
+![1-2_quiz.f.p_class.png](./screenshots/1-2_quiz.f.p_class.png)
 ---
 
 # 3️⃣ 파일 입출력
@@ -512,6 +485,7 @@ git clone 주소
 | `checkout` | 브랜치 이동 |
 | `clone` | 저장소 복사 |
 
+![git_log.png](./screenshots/git_log.png)
 ---
 
 
@@ -778,8 +752,8 @@ git push
 #### 📌 파일 구조 확인
 
 - [ ] `main.py` 가 있다
-- [ ] `quiz.py` 가 있다
-- [ ] `data.py` 가 있다
+- [ ] `quiz_final.py` 가 있다
+- [ ] `state.py` 가 있다
 - [ ] `storage.py` 가 있다
 - [ ] `README.md` 가 있다
 
