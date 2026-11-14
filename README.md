@@ -567,6 +567,8 @@ git pull
 ![git_new_repo.png](./screenshots/git_new_repo.png)
 ![git_clone_log.png](./screenshots/git_clone_log.png)
 
+![git_branch.png](./screenshots/git_branch.png)
+
 ---
 
 ### 2. quiz_final.py 코드 작성
