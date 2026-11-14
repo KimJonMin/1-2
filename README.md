@@ -21,16 +21,15 @@
 ### 1. 저장소 다운로드
 
 ```bash
-git clone https://github.com/내아이디/python-quiz-game.git
-cd python-quiz-game
+git clone https://github.com/KimJonMin/1-2.git
+cd 1-2
 ```
 
-> ⚠️ `내아이디` 부분을 본인 GitHub 아이디로 바꿔주세요.
 
 ### 2. 게임 실행
 
 ```bash
-python3 main.py
+python3 quiz_fianl.py
 ```
 ![git_version.png](./screenshots/git_version.png)
 
@@ -85,14 +84,22 @@ python3 main.py
 python-quiz-game/
 │
 ├── main.py          # 프로그램 시작점, 메뉴 화면
-├── quiz.py          # Quiz 클래스 정의
-│
-├── quizzes.json     # 퀴즈 문제 데이터
-├── state.json       # 점수 기록 데이터 (자동 생성)
-│
+├── quiz_fianl.py    # Quiz 클래스 정의
+├── storage.py       # state.json 파일을 읽고 쓰는 (저장/불러오기)
+├── state.json       # 실제데이터(점수, 문제)가 저장 (자동 생성)
 ├── .gitignore       # Git 제외 파일 목록
 └── README.md        # 프로젝트 설명 (이 파일)
 ```
+
+학습 포인트: 왜 파일을 이렇게 나누나요?
+이미지처럼 파일을 나누면 다음과 같은 장점이 있습니다.
+
+* 가독성: 한 파일에 코드가 수천 줄 있는 것보다, 기능별로 나누어져 있어 찾기 
+         쉽습니다.
+* 유지보수: 저장 기능에 문제가 생기면 storage.py만 확인하면 되고, 퀴즈 
+         로직이 궁금하면 quiz_final.py만 보면 됩니다.
+* 전문성: main.py는 아주 가볍게 유지하고, 실제 복잡한 일은 다른 부품(모듈)
+         들이 나누어서 처리하는 방식이 실제 현업에서 쓰는 방식입니다.
 
 ---
 
@@ -158,15 +165,6 @@ python-quiz-game/
 
 ---
 
-## 🛠 사용 기술
-
-| 기술 | 용도 |
-|------|------|
-| Python 3 | 게임 전체 구현 |
-| JSON | 퀴즈 데이터 및 점수 저장 |
-| Git / GitHub | 버전 관리 및 코드 업로드 |
-
----
 
 # 📚 Python 퀴즈 게임 — 학습 정리
 
@@ -178,7 +176,7 @@ python-quiz-game/
 > 변수란 **데이터를 담는 상자**예요.
 
 ```python
-name = "홍길동"   # 상자 이름: name, 담긴 값: "홍길동"
+name = "홍길동"    # 상자 이름: name, 담긴 값: "홍길동"
 age  = 20         # 상자 이름: age,  담긴 값: 20
 ```
 
@@ -192,11 +190,11 @@ age  = 20         # 상자 이름: age,  담긴 값: 20
 
 | 자료형 | 의미 | 예시 |
 |--------|------|------|
-| `int` | 정수 | `10`, `-3`, `0` |
-| `str` | 문자열 | `"안녕"`, `"hello"` |
-| `bool` | 참/거짓 | `True`, `False` |
-| `list` | 순서 있는 목록 | `[1, 2, 3]` |
-| `dict` | 키-값 쌍 | `{"name": "홍길동"}` |
+| `int` (Integer, 정수)| 정수 | `10`, `-3`, `0` |
+| `str` (String, 문자열)| 문자열 | `"안녕"`, `"hello"` |
+| `bool`(Boolean, 불리언)| 참/거짓 | `True`, `False` |
+| `list`(List, 리스트)| 순서 있는 목록 | `[1, 2, 3]` |
+| `dict`(Dictionary, 딕셔너리)| 키-값 쌍 | `{"name": "홍길동"}` |
 
 ```python
 age     = 20              # int
