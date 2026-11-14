@@ -199,6 +199,8 @@ else:
 | `elif` | 두 번째, 세 번째... 조건 확인 |
 | `else` | 모든 조건이 아닐 때 실행 |
 
+![if](./screenshots/if.png)
+
 ---
 
 ## ✅ 반복문 for vs while
@@ -226,6 +228,8 @@ while count < 3:
 |--|-------|---------|
 | 언제 사용? | 반복 횟수가 **정해진** 경우 | 조건이 **만족하는 동안** |
 | 예시 | 퀴즈 7문제 출제 | 정답 입력할 때까지 반복 |
+
+![for](./screenshots/for.png)
 
 ---
 
@@ -301,6 +305,8 @@ print(q.question)   # 파이썬을 만든 사람은?
 |------|------|
 | `__init__` | 객체를 만들 때 **자동으로 실행**되는 함수 |
 | `self` | **지금 이 객체 자신**을 가리키는 말 |
+
+![init_self](./screenshots/init_self.png)
 
 ---
 
@@ -621,6 +627,8 @@ class Quiz:
 | `display()` | 문제와 선택지를 출력하는 함수 |
 | `check_answer()` | 정답 여부를 확인하는 함수 |
 | `enumerate(list, start=1)` | 리스트를 1번부터 번호 붙여 순회 |
+
+![display.png](./screenshots/display.png)
 
 ---
 
