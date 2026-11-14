@@ -476,6 +476,9 @@ except FileNotFoundError:
 | `try` | 오류가 날 수 있는 코드 실행 |
 | `except` | 오류가 났을 때 대신 실행 |
 
+![try](./screenshots/try.png)
+
+
 ---
 
 # 4️⃣ Git 기초
