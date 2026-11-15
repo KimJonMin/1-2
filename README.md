@@ -604,7 +604,7 @@ class Quiz:
   
     🔄to_dict (객체 → 딕셔너리)
     🔄from_dict (딕셔너리 → 객체) : @staticmethod: 인스턴스 없이 클래스에서 직접 호출 가능
-    
+
     🔄 데이터 흐름
       Quiz 객체 생성
           ↓
@@ -823,19 +823,6 @@ print('오답(1):', q.check_answer(1))
 ![1-2_quiz.f.p_목록.png](./screenshots/1-2_quiz.f.p_목록.png)
 ![1-2_quiz.f.p_score.png](./screenshots/1-2_quiz.f.p_score.png)
 ![1-2_quiz.f.p_종료.png](./screenshots/1-2_quiz.f.p_종료.png)
----
-
-## Git 커밋
-
-```bash
-git add quiz.py quizzes.json Step04.md
-git commit -m "feat: Quiz 클래스 및 퀴즈 데이터 추가"
-git push
-```
-
----
-
-![py_git_commit1.png](./screenshots/py_git_commit1.png)
 ---
 
 
