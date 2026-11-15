@@ -85,6 +85,7 @@ python-quiz-game/
 
 ![folder.png](./screenshots/folder.png)
 
+
 학습 포인트: 왜 파일을 이렇게 나누나요?
 이미지처럼 파일을 나누면 다음과 같은 장점이 있습니다.
 
