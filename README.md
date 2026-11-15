@@ -612,6 +612,92 @@ class Quiz:
         return self.answer == user_answer
 ```
 ![quiz_final.py.png](./screenshots/quiz_final.py.png)
+![py_설명1.png](./screenshots/py_설명1.png)
+  
+    *to_dict (객체 → 딕셔너리)
+    *from_dict (딕셔너리 → 객체) : @staticmethod: 인스턴스 없이 클래스에서 직접 호출 가능
+
+    Quiz 객체 생성
+        ↓
+    to_dict() → 딕셔너리로 변환
+        ↓
+    JSON 파일에 저장 (state.json)
+        ↓
+    프로그램 재시작
+        ↓
+    load() 실행
+        ↓
+    from_dict() → Quiz 객체로 복원
+        ↓
+    게임 시작 (play)
+
+![py_설명2.png](./screenshots/py_설명2.png)
+
+    🔄state.json 로드 (퀴즈 데이터)
+       state.json → 퀴즈 데이터
+       scores.json → 점수 기록
+
+       파일 없음 → 기본 퀴즈 로드 → 파일 저장 후 종료
+
+    🔄파일 읽기 (try-except)
+       1. state.json 열기
+       2. JSON 파일 읽기
+       3. 각 퀴즈를 from_dict()로 Quiz 객체로 변환
+       4. self.quizzes에 저장
+    
+    🔄scores.json 로드 (점수 기록)
+       1. scores.json 존재 확인
+       2. 파일 읽기
+       3. 모든 점수 중 최고값 찾기
+       4. 에러 발생 시 초기화
+
+    🔄 전체 흐름도
+       load() 호출
+        ↓
+       state.json 존재?
+       ├─ NO  → load_default() → save_state() → 종료
+       └─ YES → 파일 읽기
+                ├─ 성공 → Quiz 객체로 변환
+                └─ 실패 → load_default() + save_state()
+           ↓
+       scores.json 존재?
+       ├─ NO  → scores = [], best_score = 0
+       └─ YES → 파일 읽기
+                ├─ 성공 → best_score 계산
+                └─ 실패 → scores = [], best_score = 0
+
+
+![py_설명3.png](./screenshots/py_설명3.png)
+
+     🔄load_default (기본 퀴즈 설정) : 4개의 Quiz 객체 생성
+
+     🔄save_state (퀴즈 데이터 저장)
+
+     🔄save_score (점수 저장)
+     
+     🔄play (게임 진행)
+     
+     🔄퀴즈 출력 및 입력
+     
+     🔄정답 검증 및 채점
+
+     🔄전체 데이터 흐름
+      프로그램 시작
+          ↓
+      load() 호출
+       ├─ state.json 로드 → Quiz 객체 생성
+       └─ scores.json 로드 → best_score 계산
+           ↓
+       play() 호출
+       ├─ 각 퀴즈 출력
+       ├─ 사용자 입력 받기
+       ├─ 정답 확인 및 점수 누적
+       └─ 게임 종료
+           ↓
+       save_score(score) 호출
+       ├─ 점수 기록 생성
+       ├─ self.scores에 추가
+       └─ scores.json에 저장
 
 ---
 
