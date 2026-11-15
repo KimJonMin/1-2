@@ -34,14 +34,6 @@ python3 quiz_fianl.py
 ![git_version.png](./screenshots/git_version.png)
 
 
-<table>
-<tr>
-<td width="60%">
-
-![1-2_quiz.f.p_재출력1](./screenshots/1-2_quiz.f.p_재출력1.png)
-
-</td>
-<td width="40%">
 
 ### 3. 메뉴 선택
 
@@ -61,9 +53,6 @@ python3 quiz_fianl.py
 
 > 💡 1~4 숫자를 입력하고 Enter 를 누르세요.
 
-</td>
-</tr>
-</table>
 
 ---
 
@@ -377,7 +366,6 @@ with open("test.txt", "r") as f:
 |------|------|
 | `"r"` | 읽기 (파일이 없으면 오류) |
 | `"w"` | 쓰기 (파일이 없으면 새로 생성) |
-| `"a"` | 이어쓰기 (기존 내용 유지) |
 
 ---
 
@@ -614,22 +602,23 @@ class Quiz:
 ![quiz_final.py.png](./screenshots/quiz_final.py.png)
 ![py_설명1.png](./screenshots/py_설명1.png)
   
-    *to_dict (객체 → 딕셔너리)
-    *from_dict (딕셔너리 → 객체) : @staticmethod: 인스턴스 없이 클래스에서 직접 호출 가능
-
-    Quiz 객체 생성
-        ↓
-    to_dict() → 딕셔너리로 변환
-        ↓
-    JSON 파일에 저장 (state.json)
-        ↓
-    프로그램 재시작
-        ↓
-    load() 실행
-        ↓
-    from_dict() → Quiz 객체로 복원
-        ↓
-    게임 시작 (play)
+    🔄to_dict (객체 → 딕셔너리)
+    🔄from_dict (딕셔너리 → 객체) : @staticmethod: 인스턴스 없이 클래스에서 직접 호출 가능
+    
+    🔄 데이터 흐름
+      Quiz 객체 생성
+          ↓
+      to_dict() → 딕셔너리로 변환
+          ↓
+      JSON 파일에 저장 (state.json)
+          ↓
+      프로그램 재시작
+          ↓
+      load() 실행
+          ↓
+      from_dict() → Quiz 객체로 복원
+          ↓
+      게임 시작 (play)
 
 ![py_설명2.png](./screenshots/py_설명2.png)
 
